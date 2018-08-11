@@ -99,7 +99,7 @@ def plot_durations(episode_durations):
   plt.figure(2)
   plt.clf()
   plt.xlabel('Episode')
-  plt .ylabel('Duration')
+  plt.ylabel('Duration')
   plt.plot(episode_durations)
   durations_t = torch.tensor(episode_durations, dtype=torch.float)
   if len(durations_t) >= 100:
