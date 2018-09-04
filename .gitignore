@@ -3,4 +3,4 @@ __pycache__
 *.swp
 *.lock
 xcuserdata
-
+*.py.cfg
