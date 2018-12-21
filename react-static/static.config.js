@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { SheetsRegistry } from 'react-jss/lib/jss'
+import { SheetsRegistry } from 'jss';
+import { create } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider'
-import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from '@material-ui/core/styles'
+import { MuiThemeProvider } from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { createGenerateClassName } from '@material-ui/core/styles'
 
 import theme from './src/theme'
 
@@ -12,7 +15,7 @@ export default {
   getRoutes: async () => {
     return []
   },
-  renderToHtml: (render, Comp, meta) => {
+  renderToElement: async (App, { meta, clientStats }) => {
     // Create a sheetsRegistry instance.
     const sheetsRegistry = new SheetsRegistry()
 
@@ -21,24 +24,21 @@ export default {
 
     const generateClassName = createGenerateClassName()
 
-    const html = render(
+    meta.jssStyles = sheetsRegistry.toString()
+
+    return (
       <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
         <MuiThemeProvider theme={muiTheme} sheetsManager={new Map()}>
-          <Comp />
+          <App />
         </MuiThemeProvider>
       </JssProvider>
     )
-
-    meta.jssStyles = sheetsRegistry.toString()
-
-    return html
   },
   Document: class CustomHtml extends Component {
     render () {
       const {
         Html, Head, Body, children, renderMeta,
       } = this.props
-
       return (
         <Html>
           <Head>

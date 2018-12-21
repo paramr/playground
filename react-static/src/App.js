@@ -27,37 +27,14 @@ const styles = {
 }
 
 class App extends PureComponent {
-  // Remove the server-side injected CSS.
-  componentDidMount() {
-    const jssStyles = document.getElementById('jss-server-side')
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles)
-    }
-  }
-
-
   render() {
     const { classes } = this.props
 
-/*
-    return (
-    <Root>
-      <AppBar className={classes.appBar} color="default" position="static">
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-      </nav>
-      </AppBar>
-      <div className="content">
-        <Routes />
-      </div>
-    </Root>
-    )*/
     return (
       <Root>
         <div className={classes.container}>
           <CssBaseline />
-          <AppBar className={classes.appBar} color="default" position="static">
+          <AppBar className={classes.appBar} position="static">
             <nav>
               <Tabs className={classes.tabs} value={false}>
                 <Tab component={Link} to="/" label="Home" />
@@ -71,27 +48,9 @@ class App extends PureComponent {
         </div>
       </Root>
     )
-/*
-    return (
-      <Root>
-        <div className={classes.container}>
-          <CssBaseline />
-          <AppBar className={classes.appBar} color="default" position="static">
-            <nav>
-              <Tabs>
-              </Tabs>
-            </nav>
-          </AppBar>
-          <div>
-            <Routes />
-          </div>
-        </div>
-      </Root>
-    )*/
   }
 }
 
 const AppWithStyles = withStyles(styles)(App)
 
 export default AppWithStyles
-// export default App

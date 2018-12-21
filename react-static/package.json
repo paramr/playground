@@ -4,25 +4,25 @@
   "main": "index.js",
   "scripts": {
     "start": "react-static start",
-    "stage": "react-static build --staging",
-    "build": "react-static build",
-    "bundle": "react-static bundle",
-    "export": "react-static export",
-    "serve": "serve dist -p 3000"
+    "build-stg": "react-static build --staging",
+    "build-dbg": "react-static build --debug",
+    "build-prd": "react-static build"
   },
   "dependencies": {
-    "@reach/router": "1.2",
     "@material-ui/core": "3.7",
     "@material-ui/icons": "3.0",
+    "@reach/router": "1.2",
+    "jss": "9.8",
+    "prop-types": "15.6",
     "react": "16.6",
-    "react-dom": "16.7",
+    "react-dom": "16.6",
     "react-hot-loader": "4.3",
     "react-jss": "8.6",
-    "react-static": "6.0",
-    "react-scripts": "latest"
+    "react-static": "6.0.11"
   },
   "devDependencies": {
     "eslint-config-react-tools": "latest",
-    "serve": "10.1"
+    "react-scripts": "latest",
+    "serve": "latest"
   }
 }

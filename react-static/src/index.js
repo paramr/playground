@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { MuiThemeProvider } from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
 
 // Your top level component
 import App from './App'
@@ -14,16 +15,9 @@ export default App
 
 // Render your app
 if (typeof document !== 'undefined') {
-  const renderMethod = module.hot
-    ? ReactDOM.render
-    : ReactDOM.hydrate || ReactDOM.render
+  const renderMethod =
+    module.hot ? ReactDOM.render : ReactDOM.hydrate || ReactDOM.render
 
-  const render = Comp => {
-    renderMethod(<Comp />, document.getElementById('root'))
-  }
-
-/*
-  const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
   const muiTheme = createMuiTheme(theme)
 
   const render = Comp => {
@@ -36,7 +30,6 @@ if (typeof document !== 'undefined') {
       document.getElementById('root')
     )
   }
-  */
 
   // Render!
   render(App)

@@ -1,12 +1,12 @@
-import { green, red } from '@material-ui/core/colors'
+import { indigo, yellow } from '@material-ui/core/colors'
 
 export default {
   palette: {
-    primary: green,
-    accent: red,
+    primary: indigo,
+    accent: yellow,
     type: 'light',
-    background: {
-      appBar: '#108db8',
-    },
+  },
+  typography: {
+    useNextVariants: true,
   },
 }
