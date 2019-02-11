@@ -1,0 +1,8 @@
+# Needs python3.7
+pip3 install wikipedia --user
+pip3 install allennlp --user
+
+# install spacy english model
+pip3 install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz#egg=en_core_web_sm==2.0.0 --user
+# Link english model
+python3 -m spacy link en_core_web_sm en
