@@ -4,3 +4,6 @@ __pycache__
 *.lock
 xcuserdata
 *.py.cfg
+
+# for rust
+target/
