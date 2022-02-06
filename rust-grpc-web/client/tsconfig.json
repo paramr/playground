@@ -1,0 +1,38 @@
+// https://www.typescriptlang.org/docs/handbook/compiler-options.html
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "es2020",
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "importHelpers": true,
+		"resolveJsonModule": true,
+    "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+//    "strict": true,
+    "noImplicitThis": true,
+    "types": [
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@types/node"
+    ],
+    "baseUrl": ".",
+    "paths": {
+    },
+    "lib": [
+      "es2020",
+      "DOM"
+    ]
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+}
