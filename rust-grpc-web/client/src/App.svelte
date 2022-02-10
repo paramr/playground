@@ -1,19 +1,23 @@
 <script lang="ts">
-  import * as hello_pb from '../proto/build/hello_pb';
-  import * as hello_svc from '../proto/build/hello_grpc_web_pb';
-	export let name: string;
+  import {GrpcWebFetchTransport} from "@protobuf-ts/grpcweb-transport";
+  import * as hello_pb from '../proto/build/hello';
+  import * as hello_client from '../proto/build/hello.client';
 
-  let req = new hello_pb.HelloRequest();
-  req.setName('Grpc web test');
-  const helloService = new hello_svc.HelloServicePromiseClient('http://localhost:50051');
+  let req: hello_pb.HelloRequest = {
+    name: 'Grpc web test',
+  };
+  const transport = new GrpcWebFetchTransport({
+    baseUrl: 'http://localhost:50051',
+  });
+  const helloClient = new hello_client.HelloServiceClient(transport);
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-  {#await helloService.hello(req)}
+	<h1>Hello!</h1>
+  {#await helloClient.hello(req)}
   	<p>Waiting...</p>
   {:then resp}
-    <p>The number is {resp.getMessage()}</p>
+    <p>The response is {hello_pb.HelloResponse.toJsonString(resp.response)}</p>
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}

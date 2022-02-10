@@ -1,11 +1,7 @@
 use tonic::{transport::Server, Request, Response, Status};
 
-use hello::hello_service_server::{HelloService, HelloServiceServer};
-use hello::{HelloResponse, HelloRequest, SillyPayload};
-
-pub mod hello {
-  tonic::include_proto!("hello");
-}
+use proto::hello::hello_service_server::{HelloService, HelloServiceServer};
+use proto::hello::{HelloResponse, HelloRequest};
 
 #[derive(Debug, Default)]
 pub struct HelloServiceImpl {}
@@ -18,11 +14,9 @@ impl HelloService for HelloServiceImpl {
     ) -> Result<Response<HelloResponse>, Status> {
         println!("Got a request: {:?}", request);
 
-        let reply = hello::HelloResponse {
+        let reply = HelloResponse {
             message: format!("Hello {:?}!", request.into_inner().name).into(),
-            payload: Some(SillyPayload {
-              silly: 101,
-            }),
+            payload: Some(shared::create_silly_payload()),
         };
 
         Ok(Response::new(reply))
@@ -35,7 +29,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let service = HelloServiceImpl::default();
     let service = HelloServiceServer::new(service);
     let service = tonic_web::config()
-        .allow_origins(vec!["127.0.0.1", "file://", "http://localhost:8080"])
         .enable(service);
     Server::builder()
         .accept_http1(true)
