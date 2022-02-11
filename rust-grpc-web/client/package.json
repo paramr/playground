@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "run-s proto wasm vite",
+    "vite": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "proto": "./proto_gen.sh"
+    "proto": "./proto_gen.sh",
+    "wasm": "wasm-pack build ./wasm --target web"
   },
   "devDependencies": {
     "@protobuf-ts/plugin": "^2.2.2",
@@ -23,7 +25,8 @@
     "svelte-preprocess": "^4.9.8",
     "tslib": "^2.3.1",
     "typescript": "^4.5.4",
-    "vite": "^2.8.0"
+    "vite": "^2.8.0",
+    "vite-plugin-wasm-pack": "^0.1.9"
   },
   "dependencies": {
     "@protobuf-ts/grpcweb-transport": "^2.2.2",

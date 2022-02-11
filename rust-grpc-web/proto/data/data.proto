@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package shared;
+package data;
 
 message SillyPayload {
   uint64 silly = 1;

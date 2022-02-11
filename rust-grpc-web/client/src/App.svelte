@@ -1,15 +1,20 @@
 <script lang="ts">
   import {GrpcWebFetchTransport} from "@protobuf-ts/grpcweb-transport";
-  import * as hello_pb from '../proto/build/hello';
-  import * as hello_client from '../proto/build/hello.client';
+  import * as api_pb from '../proto/build/api';
+  import * as api_client from '../proto/build/api.client';
+  import init, { greet } from '../wasm/pkg/wasm';
 
-  let req: hello_pb.HelloRequest = {
+  let req: api_pb.HelloRequest = {
     name: 'Grpc web test',
   };
   const transport = new GrpcWebFetchTransport({
     baseUrl: 'http://localhost:50051',
   });
-  const helloClient = new hello_client.HelloServiceClient(transport);
+  const helloClient = new api_client.HelloServiceClient(transport);
+  init().then(() => {
+    console.log('init wasm-pack');
+    greet('from vite!');
+  });
 </script>
 
 <main>
@@ -17,7 +22,7 @@
   {#await helloClient.hello(req)}
   	<p>Waiting...</p>
   {:then resp}
-    <p>The response is {hello_pb.HelloResponse.toJsonString(resp.response)}</p>
+    <p>The response is {api_pb.HelloResponse.toJsonString(resp.response)}</p>
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}

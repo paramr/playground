@@ -1,7 +1,9 @@
 [workspace]
 
 members = [
-  "proto",
+  "proto/data",
+  "proto/api",
   "shared",
   "server",
+  "client/wasm",
 ]
