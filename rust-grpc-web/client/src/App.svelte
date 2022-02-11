@@ -2,8 +2,9 @@
   import {GrpcWebFetchTransport} from "@protobuf-ts/grpcweb-transport";
   import * as api_pb from '../proto/build/api';
   import * as api_client from '../proto/build/api.client';
-  import init, { greet } from '../wasm/pkg/wasm';
+  import { greet } from '../wasm/pkg/wasm';
 
+  greet('from vite!');
   let req: api_pb.HelloRequest = {
     name: 'Grpc web test',
   };
@@ -11,10 +12,6 @@
     baseUrl: 'http://localhost:50051',
   });
   const helloClient = new api_client.HelloServiceClient(transport);
-  init().then(() => {
-    console.log('init wasm-pack');
-    greet('from vite!');
-  });
 </script>
 
 <main>
