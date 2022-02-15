@@ -1,0 +1,19 @@
+syntax = "proto3";
+package wasm_api;
+
+import "data.proto";
+
+service WasmService {
+  rpc Hello(WasmRequest) returns (WasmResponse);
+  rpc HelloWorld(WasmRequest) returns (WasmResponse);
+}
+
+message WasmRequest {
+  optional string name = 1;
+}
+
+// return value
+message WasmResponse {
+  string message = 1;
+  data.SillyPayload payload = 2;
+}

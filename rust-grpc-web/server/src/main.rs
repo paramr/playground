@@ -1,7 +1,7 @@
 use tonic::{transport::Server, Request, Response, Status};
 
-use proto_api::api::hello_service_server::{HelloService, HelloServiceServer};
-use proto_api::api::{HelloResponse, HelloRequest};
+use proto_server_api::api::hello_service_server::{HelloService, HelloServiceServer};
+use proto_server_api::api::{HelloResponse, HelloRequest};
 
 #[derive(Debug, Default)]
 pub struct HelloServiceImpl {}
@@ -13,9 +13,9 @@ impl HelloService for HelloServiceImpl {
     request: Request<HelloRequest>,
   ) -> Result<Response<HelloResponse>, Status> {
     println!("Got a request: {:?}", request);
-
+    let request_proto = request.into_inner();
     let reply = HelloResponse {
-        message: format!("Hello {:?}!", request.into_inner().name).into(),
+        message: format!("Hello from server {:?}!", request_proto.name),
         payload: Some(shared::create_silly_payload()),
     };
 

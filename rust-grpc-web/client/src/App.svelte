@@ -1,25 +1,30 @@
 <script lang="ts">
   import {GrpcWebFetchTransport} from "@protobuf-ts/grpcweb-transport";
-  import * as api_pb from '../proto/build/api';
-  import * as api_client from '../proto/build/api.client';
-  import { greet } from '../wasm/pkg/wasm';
+  import * as server_api_pb from '../proto_build/server_api';
+  import * as server_api_client from '../proto_build/server_api.client';
+  import * as wasm_api_pb from '../proto_build/wasm_api';
+  import * as wasm_api_client from '../proto_build/wasm_api.client';
 
-  greet('from vite!');
-  let req: api_pb.HelloRequest = {
+  let wasmReq: wasm_api_pb.WasmRequest = {
+    name: 'Grpc web test',
+  };
+  let wasmResp = wasm_api_client.WasmServiceHello(wasmReq);
+  let req: server_api_pb.HelloRequest = {
     name: 'Grpc web test',
   };
   const transport = new GrpcWebFetchTransport({
     baseUrl: 'http://localhost:50051',
   });
-  const helloClient = new api_client.HelloServiceClient(transport);
+  const helloClient = new server_api_client.HelloServiceClient(transport);
 </script>
 
 <main>
 	<h1>Hello!</h1>
+  <p>The wasm response is {wasm_api_pb.WasmResponse.toJsonString(wasmResp)}</p>
   {#await helloClient.hello(req)}
   	<p>Waiting...</p>
   {:then resp}
-    <p>The response is {api_pb.HelloResponse.toJsonString(resp.response)}</p>
+    <p>The server response is {server_api_pb.HelloResponse.toJsonString(resp.response)}</p>
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}

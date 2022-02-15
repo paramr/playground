@@ -2,7 +2,7 @@
 
 members = [
   "proto/data",
-  "proto/api",
+  "proto/server_api",
   "shared",
   "server",
   "client/wasm",

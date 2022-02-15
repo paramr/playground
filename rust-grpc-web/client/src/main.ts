@@ -1,7 +1,7 @@
 import App from './App.svelte'
-import init from '../wasm/pkg/wasm';
+import { WasmInit } from '../proto_build/wasm_api.client';
 
-await init();
+await WasmInit();
 
 const app = new App({
   target: document.getElementById('app')
