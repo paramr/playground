@@ -7,3 +7,8 @@ xcuserdata
 
 # for rust
 target/
+
+#for agda
+agda/**/*.agdai
+agda/**/MAlonzo/
+
