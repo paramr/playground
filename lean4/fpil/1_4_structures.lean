@@ -9,7 +9,9 @@ structure Point where
   x : Float
   y : Float
   deriving Repr
+
 def origin : Point := { x := 0.0, y := 0.0 }
+
 #eval origin
 #eval origin.x
 #eval origin.y
@@ -32,7 +34,7 @@ structure Point3D where
   x : Float
   y : Float
   z : Float
-deriving Repr
+  deriving Repr
 
 def origin3D : Point3D := { x := 0.0, y := 0.0, z := 0.0 }
 

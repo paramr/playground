@@ -32,32 +32,32 @@ structure Point3D where
   x : Float
   y : Float
   z : Float
-deriving Repr
+  deriving Repr
 
 def depth (p : Point3D) : Float :=
   match p with
-  | { x := _, y := _, z := d } => d
+    | { x := _, y := _, z := d } => d
 
 -- Recursive Functions
 def even (n : Nat) : Bool :=
   match n with
-  | Nat.zero => true
-  | Nat.succ k => not (even k)
+    | Nat.zero => true
+    | Nat.succ k => not (even k)
 
 def plus (n : Nat) (m : Nat) : Nat :=
   match m with
-  | Nat.zero => n
-  | Nat.succ m' => Nat.succ (plus n m')
+    | Nat.zero => n
+    | Nat.succ m' => Nat.succ (plus n m')
 
 def times (n : Nat) (m : Nat) : Nat :=
   match m with
-  | Nat.zero => Nat.zero
-  | Nat.succ m' => plus (times n m') n
+    | Nat.zero => Nat.zero
+    | Nat.succ m' => plus (times n m') n
 
 def minus (n : Nat) (m : Nat) : Nat :=
   match m with
-  | Nat.zero => n
-  | Nat.succ m' => pred (minus n m')
+    | Nat.zero => n
+    | Nat.succ m' => pred (minus n m')
 
 -- def div (n : Nat) (m : Nat) : Nat :=
 --   if n < m then
