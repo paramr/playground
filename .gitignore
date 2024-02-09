@@ -12,3 +12,5 @@ target/
 agda/**/*.agdai
 agda/**/MAlonzo/
 
+lean4/**/.lake/
+lean4/**/lake-manifest.json
