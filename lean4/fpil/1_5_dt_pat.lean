@@ -14,16 +14,16 @@ inductive XNat where
 -- Pattern Matching
 def isZero (n : Nat) : Bool :=
   match n with
-  | Nat.zero => true
-  | Nat.succ _ => false
+    | Nat.zero => true
+    | Nat.succ _ => false
 
 #eval isZero 0
 #eval isZero 5
 
 def pred (n : Nat) : Nat :=
   match n with
-  | Nat.zero => Nat.zero
-  | Nat.succ k => k
+    | Nat.zero => Nat.zero
+    | Nat.succ k => k
 
 #eval pred 5
 #eval pred 0

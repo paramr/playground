@@ -47,7 +47,7 @@ def aStr : Str := "This is a string."
 
 -- Errors
 def NaturalNumber : Type := Nat
--- def thirtyEight : NaturalNumber := 38
+def thirtyEightDirect : NaturalNumber := 38
 def thirtyEight : NaturalNumber := (38 : Nat)
 
 abbrev N : Type := Nat
