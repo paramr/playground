@@ -11,4 +11,4 @@
 #check 1 - 2
 
 -- Errors
--- #check String.append "hello" [" ", "world"]
+#check String.append "hello" [" ", "world"]
