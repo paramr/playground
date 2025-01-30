@@ -333,6 +333,8 @@ example : p ∨ False ↔ p := sorry
 example : p ∧ False ↔ False := sorry
 example : (p → q) → (¬q → ¬p) := sorry
 
+example : ¬(p ↔ ¬p) := sorry
+
 end ex_const
 
 section ex_cls
